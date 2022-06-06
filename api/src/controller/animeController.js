@@ -7,12 +7,14 @@ const server = Router();
 server.post('/anime' , async (req, resp) => {
 
     try {
-        const {nome} = req.body
 
-        const resposta = await inserirValor(nome);
+        const {name} = req.body;
+        if(!name.nome){   throw new Error(' Nome do filme é obrigatório! ')}; 
+        
+        const resposta = await inserirValor(name)
 
 
-        resp.send(resposta)
+        resp.send(resposta);
 
     } 
     catch (err) {
@@ -20,9 +22,7 @@ server.post('/anime' , async (req, resp) => {
         resp.status(406).send({
 
             erro: err.message
-        
         })
-
     }
 } )
 
@@ -33,17 +33,12 @@ server.get('/anime' , async (req, resp) => {
 
         const reposta = await consulta(anime);
 
-        resp.send()
-
-
+        resp.send(reposta)
     } 
     catch (err) {
         
         resp.status(406).send({
-
             erro: err.message
-        
         })
-
     }
 } )
