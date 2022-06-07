@@ -10,7 +10,7 @@ server.post('/anime' , async (req, resp) => {
 
         const {name} = req.body;
         if(!name.nome){   throw new Error(' Nome do filme é obrigatório! ')}; 
-        
+
         const resposta = await inserirValor(name)
 
 
@@ -42,3 +42,5 @@ server.get('/anime' , async (req, resp) => {
         })
     }
 } )
+
+export default server;
