@@ -1,46 +1,35 @@
-import { consulta, inserirValor } from '../repository/animeRepository.js'
+import { InserirAnime, ListarAnimes }  from '../repository/animeRepository.js'
 
-import { Router } from 'express'
-const server = Router(); 
+import { Router } from "express";
+
+const server = Router();
 
 
-server.post('/anime' , async (req, resp) => {
-
+server.post('/anime' , async (req,resp) =>{
     try {
-
-        const {name} = req.body;
-        if(!name.nome){   throw new Error(' Nome do filme é obrigatório! ')}; 
-
-        const resposta = await inserirValor(name)
+          const anime = req.body;
 
 
-        resp.send(resposta);
-
+        const colocaranime = await InserirAnime(anime)
+        resp.send(colocaranime)
     } 
     catch (err) {
-        
-        resp.status(406).send({
-
-            erro: err.message
-        })
+       resp.status(400).send({
+           erro:err.message
+       }) 
     }
-} )
+})
 
 server.get('/anime' , async (req, resp) => {
-
     try {
-        const {anime} = req.params
-
-        const reposta = await consulta(anime);
-
-        resp.send(reposta)
+        const resposta = await ListarAnimes();
+        resp.send(resposta)
     } 
     catch (err) {
-        
-        resp.status(406).send({
-            erro: err.message
+        resp.status(400).send({
+            erro:err.message
         })
     }
-} )
+})
 
 export default server;

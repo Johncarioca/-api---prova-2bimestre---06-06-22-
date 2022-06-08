@@ -1,28 +1,27 @@
-import { con } from './connection.js'
+import {con} from './connection.js';
 
-export function inserirValor(nome){
-
-    const comando = 
-
+export async function InserirAnime(Anime) {
+    const comando =
     `
     INSERT INTO tb_anime (nm_anime)
-     VALUES (?);
+                 VALUES  (?)
     `
-    const resposta = await con.query(comando [nome.anime]);
-    nome.anime = resposta
-    return resposta;
+
+    const [resposta] = await con.query(comando, [Anime.nome]);
+    Anime.id = resposta.insertId;
+
+    return Anime;
 }
 
-export function consulta( anime){
-
+export async function ListarAnimes() {
     const comando = 
+    `
+    SELECT id_anime    id,
+    nm_anime           nome
+    FROM tb_anime
+    `
 
-    `
-        SELECT id_anime			id,
-	         nm_anime			nome
-      
-        FROM tb_anime;
-    `
     const [linhas] = await con.query(comando);
     return linhas;
+
 }
