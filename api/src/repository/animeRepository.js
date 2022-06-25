@@ -16,7 +16,7 @@ export async function InserirAnime(Anime) {
 export async function ListarAnimes() {
     const comando = 
     `
-    SELECT id_anime    id,
+    SELECT id_animes    id,
     nm_anime           nome
     FROM tb_animes
     `

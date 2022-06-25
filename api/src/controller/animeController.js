@@ -9,13 +9,13 @@ server.post('/anime' , async (req,resp) =>{
         const anime = req.body;
         const colocaranime = await InserirAnime(anime)
         resp.send(colocaranime)
-    } 
-    catch (err) {
+    } catch (err) {
        resp.status(400).send({
            erro:err.message
        }) 
     }
 })
+
 server.get('/anime' , async (req, resp) => {
     try {
         const resposta = await ListarAnimes();
