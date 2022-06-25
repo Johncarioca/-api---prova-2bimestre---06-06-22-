@@ -29,22 +29,20 @@ export default function Index () {
  return(
      <main className='pai'>
       
-      <h1 className='bemvindo'> Bem vindo </h1>
-      <p className='nome'> escreva um nome de anime</p>
+        <h1 className='bemvindo'> Olá, Bem vindo </h1>
+        <p className='nome'> escreva um nome de anime desejado</p>
 
-      <input type='text' className='escreve' value={nome} onChange={e => SetNome(e.target.value)} />
- 
-    
-    <div className='botao'>
+        <input type='text' className='escreve' value={nome} onChange={e => SetNome(e.target.value)} />
+        
+        <div className='botao'>
 
-        <button onClick={SalvarClick}> Salvar </button>
+            <button onClick={SalvarClick}> Salvar </button>
 
+        </div>
 
-    </div>
-
-     <a href='/anime'>
-         <button>Consuta de animes</button>
-     </a>
+        <a href='/anime'>
+            <button>Consuta de animes</button>
+        </a>
 
      </main>
  );

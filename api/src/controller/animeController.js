@@ -1,15 +1,12 @@
 import { InserirAnime, ListarAnimes }  from '../repository/animeRepository.js'
 
 import { Router } from "express";
-
 const server = Router();
 
 
 server.post('/anime' , async (req,resp) =>{
     try {
-          const anime = req.body;
-
-
+        const anime = req.body;
         const colocaranime = await InserirAnime(anime)
         resp.send(colocaranime)
     } 
@@ -19,7 +16,6 @@ server.post('/anime' , async (req,resp) =>{
        }) 
     }
 })
-
 server.get('/anime' , async (req, resp) => {
     try {
         const resposta = await ListarAnimes();
